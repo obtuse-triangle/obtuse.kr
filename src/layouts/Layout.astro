@@ -33,6 +33,9 @@ const { title, description = "Default description", image = "/images/band.jpg" }
     <script></script>
   </head>
   <body class="min-h-screen">
+    <div id="progress-container">
+      <div id="progress-bar"></div>
+    </div>
     <Header navItem={glb.attributes.navItem} />
     <slot />
     <style is:global>

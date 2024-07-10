@@ -1,11 +1,4 @@
 export default interface Article {
-  data: string;
-  error: {
-    status: number;
-    name: string;
-    message: string;
-    details: {};
-  };
   id: number;
   attributes: {
     title: string;
