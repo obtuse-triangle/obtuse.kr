@@ -27,7 +27,7 @@ console.log(navItem)
         py-2.5 
         text-primaryColor 
         rounded-full  
-        ${Astro.url.pathname.split("/")[1] == item.url.split("/")[1] ? "bg-primaryColor text-secondaryColor" : ""}`}><a href={item.url} >{item.name}</a></li>
+        ${Astro.url.pathname.split("/")[1] == item.url.split("/")[1] ? "bg-primaryColor text-secondaryColor shadow-[0_0_20px_-2px_#E7D4FF]" : ""}`}><a href={item.url} >{item.name}</a></li>
       )
     })
     }
