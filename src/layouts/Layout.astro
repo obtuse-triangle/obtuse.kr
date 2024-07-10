@@ -30,11 +30,17 @@ const { title, description = "Default description", image = "/images/band.jpg" }
     <meta property="og:image" content={image} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <title>{title + " | " + glb.attributes.metadata.metaTitle}</title>
-    <script></script>
+    <script src="/scrollBar.js" is:inline></script>
   </head>
   <body class="min-h-screen">
-    <div id="progress-container">
-      <div id="progress-bar"></div>
+    <!-- <div class="progress-container fixed w-[6px] h-[100%] top-[4.25rem] right-0 z-90" hidden>
+      <div class="progress-bar w-[6px] h-[0%] bg-secondaryColor rounded-full"></div>
+    </div> -->
+    <div class="progress-container fixed w-[100%] h-[1px] top-0 left-0 z-20">
+      <div
+        class="progress-bar2 w-[0%] h-[1px] bg-primaryColor rounded-full shadow-[0_1px_16px_1px_#E7D4FF]"
+      >
+      </div>
     </div>
     <Header navItem={glb.attributes.navItem} />
     <slot />
