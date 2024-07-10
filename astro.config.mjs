@@ -10,10 +10,10 @@ export default defineConfig({
   site: "https://obtuse.kr",
   integrations: [tailwind(), sitemap(), mdx()],
   server: {
-    host: "0.0.0.0"
+    host: "0.0.0.0",
   },
   output: "server",
   adapter: node({
-    mode: "standalone"
-  })
+    mode: "standalone",
+  }),
 });

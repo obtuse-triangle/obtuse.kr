@@ -1,39 +1,40 @@
 ---
 // import { Image } from "astro:assets";
 
-import type Global from '../interfaces/global';
+import type Global from "../interfaces/global";
 interface Props {
   navItem: Global["attributes"]["navItem"];
 }
 
 const { navItem } = Astro.props;
 
-console.log(navItem)
-
+// console.log(navItem)
 ---
 
 <header
-  class="flex justify-between items-center px-4 py-4 mx-auto  fixed top-0 left-0 right-0"
+  class="flex justify-between items-center px-2 py-2 mx-auto fixed top-0 left-0 right-0 z-10 backdrop-blur bg-[#201e25] bg-opacity-60"
 >
   <a href="/" class="flex items-center gap-x-4">
     <p class="text-base text-primaryColor">Obtuse의 테크 블로그</p>
   </a>
-  <ul class="flex gap-x-2 rounded-full bg-opacity-10 bg-primaryColor box-border px-1 py-1 backdrop-blur">
+  <ul
+    class="flex gap-x-2 rounded-full bg-opacity-10 bg-primaryColor box-border px-1 py-1 backdrop-blur"
+  >
     {
-    navItem.map((item)=>{
-      console.log(Astro.url.pathname.split("/")[1], item.url.split("/")[1]);
-      return (
-      <li class={`px-6 
-        py-2.5 
-        text-primaryColor 
-        rounded-full  
-        ${Astro.url.pathname.split("/")[1] == item.url.split("/")[1] ? "bg-primaryColor text-secondaryColor shadow-[0_0_20px_-2px_#E7D4FF]" : ""}`}><a href={item.url} >{item.name}</a></li>
-      )
-    })
+      navItem.map((item) => {
+        // console.log(Astro.url.pathname.split("/")[1], item.url.split("/")[1]);
+        return (
+          <li
+            class={`px-6 py-2.5 text-primaryColor rounded-full ${Astro.url.pathname.split("/")[1] == item.url.split("/")[1] ? "bg-primaryColor text-secondaryColor shadow-[0_0_20px_-2px_#E7D4FF]" : ""}`}
+          >
+            <a href={item.url}>{item.name}</a>
+          </li>
+        );
+      })
     }
   </ul>
-<!-- <style>
+  <!-- <style>
   li:nth-child(${selected}) { @apply bg-primaryColor; @apply text-secondaryColor; }
 </style> -->
-
 </header>
+<div class="h-[4.25rem]"></div>

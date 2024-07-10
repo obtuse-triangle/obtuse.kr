@@ -7,7 +7,7 @@ import type Global from "../interfaces/global";
 
 const glb = await fetchApi<Global>({
   endpoint: "/global?populate=*",
-  wrappedByKey: "data"
+  wrappedByKey: "data",
 });
 
 interface Props {
@@ -29,17 +29,55 @@ const { title, description = "Default description", image = "/images/band.jpg" }
     <meta name="generator" content={Astro.generator} />
     <meta property="og:image" content={image} />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <title>{title + ' | ' + glb.attributes.metadata.metaTitle}</title>
+    <title>{title + " | " + glb.attributes.metadata.metaTitle}</title>
+    <script></script>
   </head>
   <body class="min-h-screen">
     <Header navItem={glb.attributes.navItem} />
     <slot />
-  </body><style is:global>
-    body{
-      background: linear-gradient(180deg, rgba(43, 35, 49, 0.45) 0%, #1C181D 50.54%), linear-gradient(98deg, rgba(28, 24, 29, 0.30) -54.04%, rgba(31, 59, 53, 0.25) 32.72%, rgba(216, 153, 99, 0.27) 61.63%, rgba(255, 247, 165, 0.30) 66.87%, rgba(227, 227, 227, 0.30) 73.58%, rgba(102, 224, 255, 0.30) 77.33%, rgba(223, 255, 190, 0.24) 90.2%, rgba(28, 24, 29, 0.30) 149.97%), #1B181D;
-      color: white;
-    }
-/* 
+    <style is:global>
+      body {
+        background: linear-gradient(180deg, rgba(43, 35, 49, 0.45) 0%, #1c181d 50.54%),
+          linear-gradient(
+            98deg,
+            rgba(28, 24, 29, 0.3) -54.04%,
+            rgba(31, 59, 53, 0.25) 32.72%,
+            rgba(216, 153, 99, 0.27) 61.63%,
+            rgba(255, 247, 165, 0.3) 66.87%,
+            rgba(227, 227, 227, 0.3) 73.58%,
+            rgba(102, 224, 255, 0.3) 77.33%,
+            rgba(223, 255, 190, 0.24) 90.2%,
+            rgba(28, 24, 29, 0.3) 149.97%
+          ),
+          #1b181d;
+        color: white;
+      }
+      body {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        overflow-y: overlay;
+      }
+      ::-webkit-scrollbar {
+        width: 8px;
+        /* height: 29px; */
+        /* background: transparent; */
+        display: none;
+      }
+      ::-webkit-scrollbar-thumb {
+        background-color: blueviolet;
+        outline: none;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+      }
+      ::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
+      ::-webkit-scrollbar-button:vertical {
+        display: none;
+      }
+
+      /* 
   :root {
     --accent: 136, 58, 234;
     --accent-light: 224, 204, 250;
@@ -67,5 +105,6 @@ const { title, description = "Default description", image = "/images/band.jpg" }
       Courier New,
       monospace;
   } */
-</style>
+    </style>
+  </body>
 </html>
