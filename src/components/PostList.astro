@@ -1,11 +1,14 @@
 ---
-import type { CollectionEntry } from "astro:content";
 import Post from "./Post.astro";
-type Props = {
-  posts: CollectionEntry<"posts">[];
-};
+import type Article from "../interfaces/article";
+
+interface Props {
+  posts: Article[];
+}
 
 const { posts } = Astro.props;
+
+// console.log(posts);
 ---
 
 <div class="grid grid-cols-2 gap-x-16 gap-y-14 max-md:grid-cols-1 mb-24">

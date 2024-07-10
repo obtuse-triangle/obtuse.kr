@@ -1,16 +1,23 @@
 ---
-import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 import Main from "../components/Main.astro";
 import H1 from "../components/H1.astro";
 import PostList from "../components/PostList.astro";
-const posts = await getCollection("posts");
-console.log(posts);
+
+import fetchApi from "../lib/strapi";
+import type Article from "../interfaces/article";
+
+const articles = await fetchApi<Article[]>({
+  endpoint: "articles?populate=cover",
+  wrappedByKey: "data",
+});
+
+// console.log(articles);
 ---
 
 <Layout title="Blog">
   <Main>
     <H1>Rhytm Nation Blog</H1>
-    <PostList posts={posts} />
+    <PostList posts={articles} />
   </Main>
 </Layout>

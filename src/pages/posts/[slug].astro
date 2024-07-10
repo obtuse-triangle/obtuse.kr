@@ -1,0 +1,76 @@
+---
+// export const prerender = true;
+import Layout from "../../layouts/Layout.astro";
+import Main from "../../components/Main.astro";
+import H1 from "../../components/H1.astro";
+
+import { Image } from "astro:assets";
+
+// import type { CollectionEntry } from "astro:content";
+// import { getCollection } from "astro:content";
+// import { Image } from "astro:assets";
+// export const getStaticPaths = async () => {
+//   const posts = await getCollection("posts");
+//   console.log(posts);
+//   const paths = posts.map((post) => {
+//     return {
+//       params: { slug: post.slug },
+//       props: {
+//         post,
+//       },
+//     };
+//   });
+//   return paths;
+// };
+
+// type Props = {
+//   post: CollectionEntry<"posts">;
+// };
+
+// const { post } = Astro.props;
+// const { Content } = await post.render();
+
+import fetchApi from "../../lib/strapi";
+import type Article from "../../interfaces/article";
+
+const { slug } = Astro.params;
+
+var post = await fetchApi<Article>({
+  endpoint: `articles/${slug}?populate=*`,
+  wrappedByKey: "data",
+});
+
+if(post == null){
+  return new Response("Not Found", { status: 404 });
+}
+
+
+// console.log(post);
+
+---
+
+<Layout title={post.attributes.title}>
+  <Main>
+    <H1>{post.attributes.title}</H1>
+    <Image
+      src={import.meta.env.STRAPI_URL+post.attributes.cover.data.attributes.formats.large.url}
+      width={1024}
+      height={1024 / 1.5}
+      alt={post?.attributes.title}
+      class="rounded-2xl shadow-xl mb-4 aspect-thumbnail object-cover"
+    />
+    <div class="prose-xl prose-dark overflow-visible relative mb-20 text-white max-w-[1024px]">
+      {
+        post.attributes.blocks.map((block) => {
+          // console.log(block)
+          if (block.__component === "shared.ckeditor") {
+            return <Fragment set:html={block.body} />
+          }
+          else if(block.__component === "shared.rich-text"){
+            return block.body
+          }
+        })
+      }
+    </div>
+  </Main>
+</Layout>
