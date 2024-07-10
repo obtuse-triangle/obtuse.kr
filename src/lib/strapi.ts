@@ -30,7 +30,15 @@ interface Props {
         url.searchParams.append(key, value);
       });
     }
-    const res = await fetch(url.toString());
+
+    console.log(url.toString())
+
+    const res = await fetch(url.toString(), {
+      headers: {
+        Authorization: `Bearer ${import.meta.env.STRAPI_JWT}`,
+      },
+    
+    });
     let data = await res.json();
   
     if (wrappedByKey) {
