@@ -8,6 +8,6 @@ type Props = {
 const { updatedAt } = Astro.props;
 ---
 
-<span class="text-gray-400">
+<span class="text-gray-400 font-thin">
   {updatedAt.split("T")[0] + " " + updatedAt.split("T")[1].split(".")[0]}
 </span>

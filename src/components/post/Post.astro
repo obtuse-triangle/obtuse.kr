@@ -24,6 +24,6 @@ const { post } = Astro.props;
   <a href={`/posts/${post.attributes.slug}`} class="text-xl font-semibold inline-block mb-1">
     <h2>{post.attributes.title}</h2>
   </a>
-  <p class="text-base font-thin line-clamp-2">{post.attributes.description}</p>
+  <p class="text-base font-thin line-clamp-2 text-gray-300">{post.attributes.description}</p>
   <Timestamp updatedAt={post.attributes.updatedAt} />
 </article>
