@@ -70,12 +70,19 @@ export const prerender = true;
 <Layout title={title}>
   <Main>
     <H1>{title}</H1>
+    <span class="text-gray-400">
+      {
+        post.attributes.updatedAt.split("T")[0] +
+          " " +
+          post.attributes.updatedAt.split("T")[1].split(".")[0]
+      }
+    </span>
     <Image
       src={import.meta.env.STRAPI_URL + cover.data.attributes.formats.large.url}
       width={1024}
       height={1024 / 1.5}
       alt={post?.attributes.title}
-      class="rounded-2xl shadow-xl mb-4 aspect-thumbnail object-cover"
+      class="rounded-2xl shadow-xl mb-4 aspect-thumbnail object-cover my-8"
     />
     <div class="prose-xl prose-dark overflow-visible relative mb-20 text-white max-w-[1024px]">
       {

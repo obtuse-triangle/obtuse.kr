@@ -2,11 +2,63 @@
 import Layout from "../layouts/Layout.astro";
 import H1 from "../components/H1.astro";
 import Main from "../components/Main.astro";
+import Image from "astro/components/Image.astro";
+
+import fetchApi from "../lib/strapi";
+import type Article from "../interfaces/article";
+
+const posts = await fetchApi<Article[]>({
+  endpoint: "/articles?populate=cover",
+  wrappedByKey: "data",
+});
 ---
 
 <Layout title="Home">
-  <Main class="pt-16">
-    <H1>Porem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate.</H1>
-    <span>2024.06.04</span>
-  </Main>
+  <div class="pt-10 flex overflow-clip posts-scroll h-[calc(100vh-4.25rem)]">
+    {
+      posts.map((post) => {
+        return (
+          <a href={"/posts/" + post.attributes.slug} class="min-w-[80vw] m-5">
+            <div class=" w-full h-full box-border flex flex-col">
+              <H1>{post.attributes.title}</H1>
+              <span class="text-gray-400">
+                {post.attributes.updatedAt.split("T")[0] +
+                  " " +
+                  post.attributes.updatedAt.split("T")[1].split(".")[0]}
+              </span>
+              <div class="flex-grow box-border my-8">
+                <Image
+                  src={import.meta.env.STRAPI_URL + post.attributes.cover.data.attributes.url}
+                  alt={(post.attributes.cover.data.attributes.alternativeText = "")}
+                  width={post.attributes.cover.data.attributes.width}
+                  height={post.attributes.cover.data.attributes.height}
+                  class="rounded-[2rem] w-full object-cover h-full"
+                />
+              </div>
+              <div>
+                <span class="flex items-center gap-3 py-3 px-7 border-primaryColor border-2 w-fit rounded-full text-lg text-primaryColor mr-0 m-auto">
+                  Read more{" "}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="30"
+                    viewBox="0 0 16 30"
+                    fill="none"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M13.5712 15.8888L7.20703 22.2529C6.81651 22.6435 6.18334 22.6435 5.79282 22.2529L5.43953 21.8997C5.04901 21.5091 5.049 20.876 5.43953 20.4854L10.2128 15.7122C10.6033 15.3216 10.6033 14.6885 10.2128 14.2979L5.43953 9.52465C5.049 9.13413 5.049 8.50097 5.43953 8.11044L5.79282 7.75716C6.18334 7.36663 6.8165 7.36663 7.20703 7.75716L13.5712 14.1213C13.8055 14.3557 13.9372 14.6736 13.9372 15.005C13.9372 15.3365 13.8055 15.6544 13.5712 15.8888Z"
+                      fill="#E3D4FF"
+                      style="fill:#E3D4FF;fill:color(display-p3 0.8902 0.8314 1.0000);fill-opacity:1;"
+                    />
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </a>
+        );
+      })
+    }
+  </div>
 </Layout>
