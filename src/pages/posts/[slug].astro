@@ -1,35 +1,10 @@
 ---
-import type { GetStaticPaths } from "astro";
-// export const prerender = true;
 import Layout from "../../layouts/Layout.astro";
 import Main from "../../components/layout/Main.astro";
 import H1 from "../../components/layout/H1.astro";
+import Timestamp from "../../components/post/Timestamp.astro";
 
 import { Image } from "astro:assets";
-
-// import type { CollectionEntry } from "astro:content";
-// import { getCollection } from "astro:content";
-// import { Image } from "astro:assets";
-// export const getStaticPaths = async () => {
-//   const posts = await getCollection("posts");
-//   console.log(posts);
-//   const paths = posts.map((post) => {
-//     return {
-//       params: { slug: post.slug },
-//       props: {
-//         post,
-//       },
-//     };
-//   });
-//   return paths;
-// };
-
-// type Props = {
-//   post: CollectionEntry<"posts">;
-// };
-
-// const { post } = Astro.props;
-// const { Content } = await post.render();
 
 import fetchApi from "../../lib/strapi";
 import type Article from "../../interfaces/article";
@@ -64,19 +39,12 @@ if (post == null) {
 }
 
 export const prerender = true;
-// console.log(post);
 ---
 
 <Layout title={title}>
   <Main>
     <H1>{title}</H1>
-    <span class="text-gray-400">
-      {
-        post.attributes.updatedAt.split("T")[0] +
-          " " +
-          post.attributes.updatedAt.split("T")[1].split(".")[0]
-      }
-    </span>
+    <Timestamp updatedAt={post.attributes.updatedAt} />
     <Image
       src={import.meta.env.STRAPI_URL + cover.data.attributes.formats.large.url}
       width={1024}

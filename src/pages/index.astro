@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import H1 from "../components/layout/H1.astro";
 import Image from "astro/components/Image.astro";
+import Timestamp from "../components/post/Timestamp.astro";
 
 import fetchApi from "../lib/strapi";
 import type Article from "../interfaces/article";
@@ -20,11 +21,7 @@ const posts = await fetchApi<Article[]>({
           <a href={"/posts/" + post.attributes.slug} class="min-w-[80vw] m-5">
             <div class=" w-full h-full box-border flex flex-col">
               <H1>{post.attributes.title}</H1>
-              <span class="text-gray-400">
-                {post.attributes.updatedAt.split("T")[0] +
-                  " " +
-                  post.attributes.updatedAt.split("T")[1].split(".")[0]}
-              </span>
+              <Timestamp updatedAt={post.attributes.updatedAt} />
               <div class="flex-grow box-border my-8">
                 <Image
                   src={import.meta.env.STRAPI_URL + post.attributes.cover.data.attributes.url}
