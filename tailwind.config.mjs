@@ -2,12 +2,12 @@
 export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
-    colors: {
-      primaryColor: "#E3D4FF",
-      secondaryColor: "#433B4E",
-      white: "#fff",
-    },
     extend: {
+      colors: {
+        primaryColor: "#E3D4FF",
+        secondaryColor: "#433B4E",
+        white: "#fff",
+      },
       typography: (theme) => ({
         DEFAULT: {
           css: {
