@@ -9,16 +9,18 @@ if (typeof autoSlide === "undefined")
       duration: 8000,
       easing: "easeInOutQuad",
       complete: () => {
-        if (window.location.pathname === "/") {
-          console.log("complete");
-          document.querySelector(".progress-bar2").style.width = "0%";
-          selected += 1;
-          if (selected >= posts.length) selected = 0;
-          render();
+        if (document.querySelector(".progress-bar2").style.width === "100%") {
+          if (window.location.pathname === "/") {
+            console.log("complete");
+            document.querySelector(".progress-bar2").style.width = "0%";
+            selected += 1;
+            if (selected >= posts.length) selected = 0;
+            render();
+          }
+          setTimeout(() => {
+            autoSlide();
+          }, 300);
         }
-        setTimeout(() => {
-          autoSlide();
-        }, 300);
       },
     });
 
