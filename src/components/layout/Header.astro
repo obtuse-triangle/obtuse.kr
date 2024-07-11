@@ -4,9 +4,10 @@
 import type Global from "../../interfaces/global";
 interface Props {
   navItem: Global["attributes"]["navItem"];
+  title: Global["attributes"]["metadata"]["metaTitle"];
 }
 
-const { navItem } = Astro.props;
+const { navItem, title } = Astro.props;
 
 // console.log(navItem)
 ---
@@ -15,7 +16,7 @@ const { navItem } = Astro.props;
   class="flex justify-between items-center px-2 py-2 mx-auto fixed top-0 left-0 right-0 z-10 backdrop-blur bg-[#201e25] bg-opacity-60"
 >
   <a href="/" class="flex items-center gap-x-4">
-    <p class="text-base text-primaryColor">Obtuse의 테크 블로그</p>
+    <p class="text-base text-primaryColor">{title} Blog</p>
   </a>
   <ul
     class="flex gap-x-2 rounded-full bg-opacity-10 bg-primaryColor box-border px-1 py-1 backdrop-blur"
