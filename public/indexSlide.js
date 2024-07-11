@@ -15,10 +15,10 @@ if (typeof autoSlide === "undefined")
           selected += 1;
           if (selected >= posts.length) selected = 0;
           render();
-          setTimeout(() => {
-            autoSlide();
-          }, 300);
         }
+        setTimeout(() => {
+          autoSlide();
+        }, 300);
       },
     });
 
