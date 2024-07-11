@@ -16,7 +16,7 @@ const posts = await fetchApi<Article[]>({
 <Layout title="Home">
   <script src="https://cdn.jsdelivr.net/npm/animejs/lib/anime.min.js" is:inline></script>
   <div class="overflow-clip">
-    <div class="pt-10 flex overflow-visible posts-scroll h-[calc(100vh-4.25rem)]">
+    <div class="pt-10 flex overflow-visible posts-scroll h-[calc(100dvh-4.25rem)]">
       {
         posts.map((post) => {
           return (
