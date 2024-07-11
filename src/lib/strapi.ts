@@ -35,7 +35,7 @@ export default async function fetchApi<T>({
 
   const res = await fetch(url.toString(), {
     headers: {
-      Authorization: `Bearer ${import.meta.env.STRAPI_JWT}`,
+      Authorization: `Bearer ${import.meta.env.STRAPI_TOKEN}`,
     },
   });
   let data = await res.json();

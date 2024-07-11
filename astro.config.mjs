@@ -12,6 +12,14 @@ export default defineConfig({
   server: {
     host: "0.0.0.0",
   },
+  image: {
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: import.meta.env.STRAPI_URL,
+      },
+    ],
+  },
   output: "static",
   adapter: node({
     mode: "standalone",
