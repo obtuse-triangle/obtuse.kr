@@ -22,7 +22,7 @@ const posts = await fetchApi<Article[]>({
             <div class=" w-full h-full box-border flex flex-col">
               <H1>{post.attributes.title}</H1>
               <Timestamp updatedAt={post.attributes.updatedAt} />
-              <div class="flex-grow box-border my-8">
+              <div class="flex-grow box-border my-8 h-1">
                 <Image
                   src={import.meta.env.STRAPI_URL + post.attributes.cover.data.attributes.url}
                   alt={(post.attributes.cover.data.attributes.alternativeText = "")}
