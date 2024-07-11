@@ -42,7 +42,7 @@ const { title, description = "Default description", image = "/images/band.jpg" }
       >
       </div>
     </div>
-    <Header navItem={glb.attributes.navItem} />
+    <Header navItem={glb.attributes.navItem} title={glb.attributes.metadata.metaTitle} />
     <slot />
     <style is:global>
       body {
@@ -61,6 +61,9 @@ const { title, description = "Default description", image = "/images/band.jpg" }
           #1b181d;
         color: white;
       }
+      .progress-bar2 {
+        transition: width 0.2s;
+      }
       body {
         -ms-overflow-style: none;
         scrollbar-width: none;
@@ -73,7 +76,6 @@ const { title, description = "Default description", image = "/images/band.jpg" }
         display: none;
       }
       ::-webkit-scrollbar-thumb {
-        background-color: blueviolet;
         outline: none;
         border-radius: 4px;
       }
