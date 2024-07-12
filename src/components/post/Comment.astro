@@ -1,0 +1,73 @@
+---
+import fetchApi from "@lib/strapi";
+import type Comment from "@interfaces/comment";
+import type Article from "@interfaces/article";
+import Image from "astro/components/Image.astro";
+
+import "../../styles/comment.css";
+
+type Props = {
+  id: Article["id"];
+};
+
+const { id } = Astro.props;
+
+const comment = await fetchApi<Comment[]>({
+  endpoint: `/comments/api::article.article:${id}`,
+});
+
+console.log(comment);
+---
+
+<div>
+  <h2 class="text-3xl">댓글</h2>
+  <form action="post">
+    <div class="flex gap-2 w-full min-h-[150px] my-3">
+      <div class="flex gap-2 flex-col min-w-[20rem]">
+        <div class="inputDiv">
+          <input type="text" name="nickname" id="nickname" placeholder="nickname" />
+        </div>
+        <div class="inputDiv">
+          <input type="email" name="email" id="email" placeholder="example@example.com" />
+        </div>
+      </div>
+      <div class="inputDiv min-h-[150px]">
+        <input
+          type="text"
+          name="content"
+          id="content"
+          placeholder="comment input"
+          class="w-full h-full"
+        />
+      </div>
+    </div>
+    <button
+      type="submit"
+      class="rounded-full mr-0 m-auto bg-primaryColor text-secondaryColor px-8 py-4 block"
+      >Send</button
+    >
+  </form>
+  <div class="my-4 gap-4 flex flex-col">
+    {
+      comment.map((c) => (
+        <div class="flex gap-4">
+          <Image
+            src={
+              c.author.avatar
+                ? c.author.avatar
+                : `https://ui-avatars.com/api/?background=d9a6f5&color=433B4E&name=${c.author.name}`
+            }
+            alt={c.author.name}
+            width={40}
+            height={40}
+            class="rounded-full w-[40px] h-[40px]"
+          />
+          <div>
+            <h3 class="font-bold">{c.author.name}</h3>
+            <p class="font-thin">{c.content}</p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</div>

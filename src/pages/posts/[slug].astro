@@ -3,6 +3,7 @@ import Layout from "@layouts/Layout.astro";
 import Main from "@components/layout/Main.astro";
 import H1 from "@components/layout/H1.astro";
 import Timestamp from "@components/post/Timestamp.astro";
+import Comment from "@components/post/Comment.astro";
 
 import { Image } from "astro:assets";
 
@@ -18,9 +19,11 @@ export const getStaticPaths = async () => {
     return {
       params: { slug: post.attributes.slug },
       props: {
+        id: post.id,
         title: post.attributes.title,
         cover: post.attributes.cover,
         blocks: post.attributes.blocks,
+        updatedAt: post.attributes.updatedAt,
       },
     };
   });
@@ -43,13 +46,14 @@ export const prerender = true;
 
 <Layout title={title}>
   <Main>
+    
     <H1>{title}</H1>
-    <Timestamp updatedAt={post.attributes.updatedAt} />
+    <Timestamp updatedAt={updatedAt} />
     <Image
       src={import.meta.env.STRAPI_URL + cover.data.attributes.formats.large.url}
       width={1024}
       height={1024 / 1.5}
-      alt={post?.attributes.title}
+      alt={title}
       class="rounded-2xl shadow-xl mb-4 aspect-thumbnail object-cover my-8"
     />
     <div class="prose-xl prose-dark overflow-visible relative mb-20 text-white max-w-[1024px]">
@@ -64,5 +68,6 @@ export const prerender = true;
         })
       }
     </div>
+    <Comment id={id} />
   </Main>
 </Layout>
