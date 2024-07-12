@@ -27,16 +27,16 @@ export const getStaticPaths = async () => {
 };
 
 const { slug } = Astro.params;
-const { title, cover, blocks } = Astro.props;
+const { id, title, cover, blocks, updatedAt } = Astro.props;
 
-var post = await fetchApi<Article>({
-  endpoint: `articles/${slug}?populate=*`,
-  wrappedByKey: "data",
-});
+// var post = await fetchApi<Article>({
+//   endpoint: `articles/${slug}?populate=*`,
+//   wrappedByKey: "data",
+// });
 
-if (post == null) {
-  return new Response("Not Found", { status: 404 });
-}
+// if (post == null) {
+//   return new Response("Not Found", { status: 404 });
+// }
 
 export const prerender = true;
 ---
