@@ -1,5 +1,7 @@
 //public/post/comment.js
-
+const Authorization =
+  "Bearer bc31b59f4cf0df8dda5c4dceb3792434a3e9ec3620333266b01d4edb7207dc1654cf9c84bad0c03a60caf495a86c1399ebe9dbda54c6e6e1ea8a770a7b131c41d153f3b245201f7bebdc8c69cf31a63af100876534fbbdd52892c71ff3225355cf85217d78c7cde1f7103041e205cb2ceb2861c918d138060db197c5a73dea1e";
+const StrapiURL = "https://strapi.obtuse.kr";
 //submit comment
 const commentForms = document.querySelectorAll(".commentForm");
 
@@ -21,12 +23,12 @@ commentForms.forEach((commentForm) => {
     console.log(body);
 
     const res = await fetch(
-      `https://strapi.obtuse.kr/api/comments/api::article.article:${e.target.postID.value}`,
+      `${StrapiURL}/api/comments/api::article.article:${e.target.postID.value}`,
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer bc31b59f4cf0df8dda5c4dceb3792434a3e9ec3620333266b01d4edb7207dc1654cf9c84bad0c03a60caf495a86c1399ebe9dbda54c6e6e1ea8a770a7b131c41d153f3b245201f7bebdc8c69cf31a63af100876534fbbdd52892c71ff3225355cf85217d78c7cde1f7103041e205cb2ceb2861c918d138060db197c5a73dea1e`,
+          Authorization: Authorization,
         },
         body: JSON.stringify(body),
       }
@@ -92,12 +94,12 @@ reportForms.forEach((reportForm) => {
       content: e.target.content.value,
     };
     fetch(
-      `https://strapi.obtuse.kr/api/comments/api::article.article:${e.target.postID.value}/comment/${e.target.commentID.value}/report-abuse`,
+      `${StrapiURL}/api/comments/api::article.article:${e.target.postID.value}/comment/${e.target.commentID.value}/report-abuse`,
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer bc31b59f4cf0df8dda5c4dceb3792434a3e9ec3620333266b01d4edb7207dc1654cf9c84bad0c03a60caf495a86c1399ebe9dbda54c6e6e1ea8a770a7b131c41d153f3b245201f7bebdc8c69cf31a63af100876534fbbdd52892c71ff3225355cf85217d78c7cde1f7103041e205cb2ceb2861c918d138060db197c5a73dea1e`,
+          Authorization: Authorization,
         },
         body: JSON.stringify(body),
       }
