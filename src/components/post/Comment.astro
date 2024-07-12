@@ -1,10 +1,9 @@
 ---
 import Image from "astro/components/Image.astro";
 import Timestamp from "./Timestamp.astro";
-
 import type Comment from "@interfaces/comment";
-
 import CommentComp from "./Comment.astro";
+import CommentForm from "./CommentForm.astro";
 
 type Props = {
   children: Comment;
@@ -38,33 +37,7 @@ const { children, postID } = Astro.props;
         <a href="">Report</a>
       </p>
     </div>
-    <form class="commentForm commentReplyForm" hidden>
-      <div class="flex gap-2 w-full min-h-[150px] my-3">
-        <div class="flex gap-2 flex-col min-w-[20rem]">
-          <div class="inputDiv">
-            <input type="text" name="nickname" id="nickname" placeholder="nickname" />
-          </div>
-          <div class="inputDiv">
-            <input type="email" name="email" id="email" placeholder="example@example.com" />
-          </div>
-        </div>
-        <div class="inputDiv min-h-[150px]">
-          <textarea
-            name="content"
-            id="content"
-            placeholder="reply comment input"
-            class="w-full h-full"></textarea>
-        </div>
-      </div>
-      <button
-        type="submit"
-        class="rounded-full mr-0 m-auto bg-primaryColor text-secondaryColor px-8 py-4 block"
-      >
-        Send
-      </button>
-      <input type="hidden" name="postID" id="postID" value={postID} />
-      <input type="hidden" name="commentID" id="commentID" value={children.id} />
-    </form>
+    <CommentForm classList="commentReplyForm hidden" postID={postID} commentID={children.id} />
     <div class="my-4">
       {
         children.children.map((cc) => {

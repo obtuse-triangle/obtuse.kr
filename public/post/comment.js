@@ -1,3 +1,6 @@
+//public/post/comment.js
+
+//submit comment
 const commentForms = document.querySelectorAll(".commentForm");
 
 commentForms.forEach((commentForm) => {
@@ -32,7 +35,7 @@ commentForms.forEach((commentForm) => {
     console.log(data);
     if (data.error) {
       alert(JSON.parse(data.error.message).message);
-    } else if (e.target.commentID) {
+    } else {
       const elm = document.createElement("div");
       elm.classList.add("flex", "gap-4");
       elm.innerHTML = `<img
@@ -49,18 +52,25 @@ commentForms.forEach((commentForm) => {
       e.target.nickname.value = "";
       e.target.content.value = "";
       e.target.email.value = "";
-      document.querySelector(".commentForm+div").appendChild(elm);
-    } else {
-      location.reload();
+      e.target.parentElement.querySelector(".commentForm+div").appendChild(elm);
+      if (e.target.commentID) {
+        e.target.parentElement.querySelector(".commentReplyForm").classList.add("hidden");
+      }
     }
+    // else {
+    //   window.location.reload();
+    // }
   });
 });
 
+//toggle reply form
 document.querySelectorAll("a.commentReply").forEach((elm) => {
   elm.addEventListener("click", (e) => {
     e.preventDefault();
     const commentReplyForm =
       e.target.parentElement.parentElement.parentElement.querySelector(".commentReplyForm");
-    commentReplyForm.hidden = !commentReplyForm.hidden;
+    commentReplyForm.classList.toggle("hidden");
   });
 });
+
+//report comment
