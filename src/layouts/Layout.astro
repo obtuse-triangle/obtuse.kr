@@ -1,9 +1,11 @@
 ---
-import Header from "../components/layout/Header.astro";
+import Header from "@components/layout/Header.astro";
 import { ViewTransitions } from "astro:transitions";
 
-import fetchApi from "../lib/strapi";
-import type Global from "../interfaces/global";
+import fetchApi from "@lib/strapi";
+import type Global from "@interfaces/global";
+
+import "@styles/global.css";
 
 const glb = await fetchApi<Global>({
   endpoint: "/global?populate=*",
@@ -44,78 +46,5 @@ const { title, description = "Default description", image = "/images/band.jpg" }
     </div>
     <Header navItem={glb.attributes.navItem} title={glb.attributes.metadata.metaTitle} />
     <slot />
-    <style is:global>
-      body {
-        background: linear-gradient(180deg, rgba(43, 35, 49, 0.45) 0%, #1c181d 50.54%),
-          linear-gradient(
-            98deg,
-            rgba(28, 24, 29, 0.3) -54.04%,
-            rgba(31, 59, 53, 0.25) 32.72%,
-            rgba(216, 153, 99, 0.27) 61.63%,
-            rgba(255, 247, 165, 0.3) 66.87%,
-            rgba(227, 227, 227, 0.3) 73.58%,
-            rgba(102, 224, 255, 0.3) 77.33%,
-            rgba(223, 255, 190, 0.24) 90.2%,
-            rgba(28, 24, 29, 0.3) 149.97%
-          ),
-          #1b181d;
-        color: white;
-      }
-      .progress-bar2 {
-        transition: width 0.2s;
-      }
-      body {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-        overflow-y: overlay;
-      }
-      ::-webkit-scrollbar {
-        width: 8px;
-        /* height: 29px; */
-        /* background: transparent; */
-        display: none;
-      }
-      ::-webkit-scrollbar-thumb {
-        outline: none;
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-      }
-      ::-webkit-scrollbar-track {
-        background-color: transparent;
-      }
-      ::-webkit-scrollbar-button:vertical {
-        display: none;
-      }
-
-      /* 
-  :root {
-    --accent: 136, 58, 234;
-    --accent-light: 224, 204, 250;
-    --accent-dark: 49, 10, 101;
-    --accent-gradient: linear-gradient(
-      45deg,
-      rgb(var(--accent)),
-      rgb(var(--accent-light)) 30%,
-      white 60%
-    );
-  }
-  html {
-    font-family: system-ui, sans-serif;
-    background: #13151a;
-    background-size: 224px;
-  }
-  code {
-    font-family:
-      Menlo,
-      Monaco,
-      Lucida Console,
-      Liberation Mono,
-      DejaVu Sans Mono,
-      Bitstream Vera Sans Mono,
-      Courier New,
-      monospace;
-  } */
-    </style>
   </body>
 </html>

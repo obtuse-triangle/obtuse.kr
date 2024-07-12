@@ -1,13 +1,13 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import Main from "../../components/layout/Main.astro";
-import H1 from "../../components/layout/H1.astro";
-import Timestamp from "../../components/post/Timestamp.astro";
+import Layout from "@layouts/Layout.astro";
+import Main from "@components/layout/Main.astro";
+import H1 from "@components/layout/H1.astro";
+import Timestamp from "@components/post/Timestamp.astro";
 
 import { Image } from "astro:assets";
 
-import fetchApi from "../../lib/strapi";
-import type Article from "../../interfaces/article";
+import fetchApi from "@lib/strapi";
+import type Article from "@interfaces/article";
 
 export const getStaticPaths = async () => {
   let posts = await fetchApi<Article[]>({
