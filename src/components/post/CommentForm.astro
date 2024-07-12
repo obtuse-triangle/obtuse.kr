@@ -11,14 +11,14 @@ const { classList, postID, commentID } = Astro.props;
   <div class="flex gap-2 w-full min-h-[150px] my-3">
     <div class="flex gap-2 flex-col min-w-[20rem]">
       <div class="inputDiv">
-        <input type="text" name="nickname" id="nickname" placeholder="nickname" />
+        <input type="text" name="nickname" id="nickname" placeholder="nickname" required />
       </div>
       <div class="inputDiv">
-        <input type="email" name="email" id="email" placeholder="example@example.com" />
+        <input type="email" name="email" id="email" placeholder="example@example.com" required/>
       </div>
     </div>
     <div class="inputDiv min-h-[150px]">
-      <textarea name="content" id="content" placeholder="comment input" class="w-full h-full"
+      <textarea name="content" id="content" placeholder="comment input" class="w-full h-full" required
       ></textarea>
     </div>
   </div>

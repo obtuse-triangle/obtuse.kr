@@ -34,9 +34,29 @@ const { children, postID } = Astro.props;
         <a class="commentReply cursor-pointer">Reply</a>
       </p>
       <p class="text-xs text-gray-400">
-        <a href="">Report</a>
+        <a class="commentReport cursor-pointer">Report</a>
       </p>
     </div>
+    <form class="reportForm hidden">
+      <div class="flex gap-2 w-full min-h-[50px] my-3">
+        <div class="inputDiv min-h-[50px]">
+          <textarea
+            name="content"
+            id="content"
+            placeholder="신고사유"
+            class="w-full h-full"
+            required></textarea>
+        </div>
+      </div>
+      <button
+        type="submit"
+        class="rounded-full mr-0 m-auto bg-primaryColor text-secondaryColor px-8 py-4 block"
+      >
+        Send
+      </button>
+      <input type="hidden" name="postID" id="postID" value={postID} />
+      <input type="hidden" name="commentID" id="commentID" value={children.id} />
+    </form>
     <CommentForm classList="commentReplyForm hidden" postID={postID} commentID={children.id} />
     <div class="my-4">
       {
