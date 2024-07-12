@@ -10,9 +10,9 @@ if (typeof autoSlide === "undefined")
       easing: "easeInOutQuad",
       complete: () => {
         if (document.querySelector(".progress-bar2").style.width === "100%") {
+          document.querySelector(".progress-bar2").style.width = "0%";
           if (window.location.pathname === "/") {
             console.log("complete");
-            document.querySelector(".progress-bar2").style.width = "0%";
             selected += 1;
             if (selected >= posts.length) selected = 0;
             render();
@@ -80,4 +80,4 @@ function render() {
 }
 
 render();
-if (typeof autoSlideAni === "undefined") autoSlideAni = autoSlide();
+autoSlideAni = autoSlide();
