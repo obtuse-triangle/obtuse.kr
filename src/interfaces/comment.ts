@@ -38,4 +38,5 @@ export default interface Comment {
     email: string;
     avatar: string;
   };
+  children: Comment[];
 }

@@ -1,73 +1,70 @@
 ---
-import fetchApi from "@lib/strapi";
-import type Comment from "@interfaces/comment";
-import type Article from "@interfaces/article";
 import Image from "astro/components/Image.astro";
-
-import "../../styles/comment.css";
+import Timestamp from "./Timestamp.astro";
+import type Comment from "@interfaces/comment";
+import CommentComp from "./Comment.astro";
+import CommentForm from "./CommentForm.astro";
 
 type Props = {
-  id: Article["id"];
+  children: Comment;
+  postID: number;
 };
 
-const { id } = Astro.props;
-
-const comment = await fetchApi<Comment[]>({
-  endpoint: `/comments/api::article.article:${id}`,
-});
-
-console.log(comment);
+const { children, postID } = Astro.props;
 ---
 
-<div>
-  <h2 class="text-3xl">댓글</h2>
-  <form action="post">
-    <div class="flex gap-2 w-full min-h-[150px] my-3">
-      <div class="flex gap-2 flex-col min-w-[20rem]">
-        <div class="inputDiv">
-          <input type="text" name="nickname" id="nickname" placeholder="nickname" />
-        </div>
-        <div class="inputDiv">
-          <input type="email" name="email" id="email" placeholder="example@example.com" />
-        </div>
-      </div>
-      <div class="inputDiv min-h-[150px]">
-        <input
-          type="text"
-          name="content"
-          id="content"
-          placeholder="comment input"
-          class="w-full h-full"
-        />
-      </div>
+<div class="flex gap-4">
+  <Image
+    src={children.author.avatar
+      ? children.author.avatar
+      : `https://ui-avatars.com/api/?background=d9a6f5&color=433B4E&name=${children.author.name}`}
+    alt={children.author.name}
+    width={40}
+    height={40}
+    class="rounded-full w-[40px] h-[40px]"
+  />
+  <div class="w-full">
+    <h3 class="font-bold">{children.author.name}</h3>
+    <p class="font-thin">{children.content}</p>
+    <div class="flex gap-4">
+      <p class="text-xs text-gray-400">
+        <Timestamp updatedAt={children.updatedAt} />
+      </p>
+      <p class="text-xs text-gray-400">
+        <a class="commentReply cursor-pointer">Reply</a>
+      </p>
+      <p class="text-xs text-gray-400">
+        <a class="commentReport cursor-pointer">Report</a>
+      </p>
     </div>
-    <button
-      type="submit"
-      class="rounded-full mr-0 m-auto bg-primaryColor text-secondaryColor px-8 py-4 block"
-      >Send</button
-    >
-  </form>
-  <div class="my-4 gap-4 flex flex-col">
-    {
-      comment.map((c) => (
-        <div class="flex gap-4">
-          <Image
-            src={
-              c.author.avatar
-                ? c.author.avatar
-                : `https://ui-avatars.com/api/?background=d9a6f5&color=433B4E&name=${c.author.name}`
-            }
-            alt={c.author.name}
-            width={40}
-            height={40}
-            class="rounded-full w-[40px] h-[40px]"
-          />
-          <div>
-            <h3 class="font-bold">{c.author.name}</h3>
-            <p class="font-thin">{c.content}</p>
-          </div>
+    <form class="reportForm hidden">
+      <div class="flex gap-2 w-full min-h-[50px] my-3">
+        <div class="inputDiv min-h-[50px]">
+          <textarea
+            name="content"
+            id="content"
+            placeholder="신고사유"
+            class="w-full h-full"
+            required></textarea>
         </div>
-      ))
-    }
+      </div>
+      <button
+        type="submit"
+        class="rounded-full mr-0 m-auto bg-primaryColor text-secondaryColor px-8 py-4 block"
+      >
+        Send
+      </button>
+      <input type="hidden" name="postID" id="postID" value={postID} />
+      <input type="hidden" name="commentID" id="commentID" value={children.id} />
+    </form>
+    <CommentForm classList="commentReplyForm hidden" postID={postID} commentID={children.id} />
+    <div class="my-4">
+      {
+        children.children.map((cc) => {
+          // console.log(cc);
+          return <CommentComp postID={postID} children={cc} />;
+        })
+      }
+    </div>
   </div>
 </div>

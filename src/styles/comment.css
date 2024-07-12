@@ -1,4 +1,5 @@
-.inputDiv > input {
+.inputDiv > input,
+.inputDiv > textarea {
   @apply h-full;
   @apply w-full;
   padding: 0.75rem;

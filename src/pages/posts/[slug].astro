@@ -3,7 +3,7 @@ import Layout from "@layouts/Layout.astro";
 import Main from "@components/layout/Main.astro";
 import H1 from "@components/layout/H1.astro";
 import Timestamp from "@components/post/Timestamp.astro";
-import Comment from "@components/post/Comment.astro";
+import Comment from "@components/post/CommentList.astro";
 
 import { Image } from "astro:assets";
 
@@ -46,7 +46,6 @@ export const prerender = true;
 
 <Layout title={title}>
   <Main>
-    
     <H1>{title}</H1>
     <Timestamp updatedAt={updatedAt} />
     <Image
