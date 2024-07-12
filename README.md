@@ -2,8 +2,10 @@
 
 ## 🚀 시작하기
 
-> 이 프로젝트는 strapi에 의존성을 가집니다. [strapi를 설치](https://docs.strapi.io/dev-docs/quick-start)한 후 .env 파일에 strapi의 주소와 토큰을 입력해주세요.
+> 이 프로젝트는 strapi에 의존성을 가집니다. [strapi를 설치](https://docs.strapi.io/dev-docs/quick-start)한 후 .env 파일과 /public/post/comment.js파일에 strapi의 주소와 토큰을 입력해주세요.
+
 > .env 파일의 예시는 .env.example을 참고하시기 바랍니다. 샘플 구동은 .env.example에 있는 주소와 토큰을 사용하실 수 있습니다.
+> (단, CORS 정책으로 인해 샘플 api로 호스팅 시에 주소는 http://localhost:4321 또는 http://127.0.0.1:4321으로만 가능합니다)
 
 ```
 git clone https://github.com/obtuse-triangle/obtuse.kr.git
