@@ -1,6 +1,7 @@
 ---
 import Header from "@components/layout/Header.astro";
 import { ViewTransitions } from "astro:transitions";
+import { fade } from "astro:transitions";
 
 import fetchApi from "@lib/strapi";
 import type Global from "@interfaces/global";
@@ -21,19 +22,19 @@ const { title, description = "Default description", image = "/images/band.jpg" }
 ---
 
 <!doctype html>
-<html lang={glb.attributes.locale}>
+<html lang={glb.attributes.locale} transition:animate={fade({ duration: "0.2s" })}>
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <ViewTransitions />
+    <ViewTransitions transition:persist />
     <meta name="generator" content={Astro.generator} />
     <meta property="og:image" content={image} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <title>{title + " | " + glb.attributes.metadata.metaTitle}</title>
     <script src="/scrollBar.js" is:inline></script>
-    <script src="https://cdn.jsdelivr.net/npm/animejs/lib/anime.min.js" is:inline></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs/lib/anime.min.js" is:raw></script>
   </head>
   <body class="min-h-screen">
     <!-- <div class="progress-container fixed w-[6px] h-[100%] top-[4.25rem] right-0 z-90" hidden>

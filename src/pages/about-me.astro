@@ -2,28 +2,15 @@
 import Layout from "@layouts/Layout.astro";
 // import H1 from "@components/layout/H1.astro";
 import Main from "@components/layout/Main.astro";
+import Section1 from "@components/about-me/Section1.astro";
 import "../styles/about-me.css";
 ---
 
 <Layout title="About me">
   <Main>
-    <h1 class="text-center text-6xl font-semibold mt-60">
-      안녕하세요!<br />
-      <div
-        class="animate-contain text-primaryColor font-extrabold inline-block h-[3.75rem] overflow-clip"
-      >
-        <div class="animated-text">
-          <span>HTML</span>
-          <span>CSS</span>
-          <span>JavaScript</span>
-          <span>Astro</span>
-          <span>React</span>
-          <span>Python</span>
-          <span>Node</span>
-          <span>Database</span>
-        </div>
-      </div> 개발자, 이준호입니다.
-    </h1>
+    <div class="pt-10">
+      <Section1 />
+    </div>
   </Main>
 </Layout>
 <script src="/about-me.js" is:inline></script>

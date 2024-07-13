@@ -3,25 +3,78 @@ import Layout from "@layouts/Layout.astro";
 import H1 from "@components/layout/H1.astro";
 import Timestamp from "@components/post/Timestamp.astro";
 import Image from "astro/components/Image.astro";
+import Section1 from "@components/about-me/Section1.astro";
 
 import fetchApi from "@lib/strapi";
 import type Article from "@interfaces/article";
 
 import "@styles/index.css";
+import "@styles/about-me.css";
 
 const posts = await fetchApi<Article[]>({
   endpoint: "/articles?populate=cover",
   wrappedByKey: "data",
 });
+posts.reverse();
 ---
 
 <Layout title="Home">
   <div class="overflow-clip">
     <div class="pt-10 flex overflow-visible posts-scroll h-[calc(100dvh-4.25rem)]">
+      <div>
+        <Section1 />
+        <div class="flex items-center flex-col my-6">
+          <span
+            class="flex items-center gap-3 py-3 px-7 border-primaryColor border-2 w-fit rounded-full text-lg text-primaryColor cursor-pointer next-slide"
+          >
+            옆으로 넘겨 블로그 글 둘러보기{" "}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="30"
+              viewBox="0 0 16 30"
+              fill="none"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M13.5712 15.8888L7.20703 22.2529C6.81651 22.6435 6.18334 22.6435 5.79282 22.2529L5.43953 21.8997C5.04901 21.5091 5.049 20.876 5.43953 20.4854L10.2128 15.7122C10.6033 15.3216 10.6033 14.6885 10.2128 14.2979L5.43953 9.52465C5.049 9.13413 5.049 8.50097 5.43953 8.11044L5.79282 7.75716C6.18334 7.36663 6.8165 7.36663 7.20703 7.75716L13.5712 14.1213C13.8055 14.3557 13.9372 14.6736 13.9372 15.005C13.9372 15.3365 13.8055 15.6544 13.5712 15.8888Z"
+                fill="#E3D4FF"
+                style="fill:#E3D4FF;fill:color(display-p3 0.8902 0.8314 1.0000);fill-opacity:1;"
+              ></path>
+            </svg>
+          </span>
+          <a
+            href="/about-me"
+            class="flex items-center gap-3 py-3 px-7 w-fit rounded-full text-lg text-primaryColor"
+          >
+            나에 대해 더 알아보기{" "}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="30"
+              viewBox="0 0 16 30"
+              fill="none"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M13.5712 15.8888L7.20703 22.2529C6.81651 22.6435 6.18334 22.6435 5.79282 22.2529L5.43953 21.8997C5.04901 21.5091 5.049 20.876 5.43953 20.4854L10.2128 15.7122C10.6033 15.3216 10.6033 14.6885 10.2128 14.2979L5.43953 9.52465C5.049 9.13413 5.049 8.50097 5.43953 8.11044L5.79282 7.75716C6.18334 7.36663 6.8165 7.36663 7.20703 7.75716L13.5712 14.1213C13.8055 14.3557 13.9372 14.6736 13.9372 15.005C13.9372 15.3365 13.8055 15.6544 13.5712 15.8888Z"
+                fill="#E3D4FF"
+                style="fill:#E3D4FF;fill:color(display-p3 0.8902 0.8314 1.0000);fill-opacity:1;"
+              ></path>
+            </svg>
+          </a>
+        </div>
+      </div>
       {
         posts.map((post) => {
           return (
-            <a href={"/posts/" + post.attributes.slug} class="min-w-[80vw] my-5">
+            <a
+              href={"/posts/" + post.attributes.slug}
+              class="min-w-[80vw] my-5"
+              style="filter:blur(5px);"
+            >
               <div class=" w-full h-full box-border flex flex-col">
                 <H1>{post.attributes.title}</H1>
                 <Timestamp updatedAt={post.attributes.updatedAt} />
@@ -63,4 +116,4 @@ const posts = await fetchApi<Article[]>({
     </div>
   </div>
 </Layout>
-<script src="/indexSlide.js" is:inline></script>
+<script src="/indexSlide.js" is:inline data-astro-rerun></script>

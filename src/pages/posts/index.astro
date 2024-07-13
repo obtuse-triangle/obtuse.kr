@@ -12,6 +12,8 @@ const articles = await fetchApi<Article[]>({
   wrappedByKey: "data",
 });
 
+articles.reverse();
+
 // console.log(articles);
 ---
 
