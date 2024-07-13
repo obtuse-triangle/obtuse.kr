@@ -3,7 +3,7 @@ import Layout from "@layouts/Layout.astro";
 import Main from "@components/layout/Main.astro";
 import H1 from "@components/layout/H1.astro";
 import Timestamp from "@components/post/Timestamp.astro";
-import Comment from "@components/post/CommentList.astro";
+import Comment from "@components/post/react/CommentList.tsx";
 
 import { Image } from "astro:assets";
 
@@ -40,8 +40,6 @@ const { id, title, cover, blocks, updatedAt } = Astro.props;
 // if (post == null) {
 //   return new Response("Not Found", { status: 404 });
 // }
-
-export const prerender = true;
 ---
 
 <Layout title={title}>
@@ -67,6 +65,6 @@ export const prerender = true;
         })
       }
     </div>
-    <Comment id={id} />
+    <Comment id={id} client:visible />
   </Main>
 </Layout>
