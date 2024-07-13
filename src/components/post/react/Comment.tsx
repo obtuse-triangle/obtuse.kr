@@ -30,31 +30,27 @@ const CommentComp = ({ children, postID }: Props) => {
         <h3 className="font-bold">{children.author.name}</h3>
         <p className="font-thin">{children.content}</p>
         <div className="flex gap-4">
-          <p className="text-xs text-gray-400">
+          <span className="text-xs text-gray-400">
             <Timestamp updatedAt={children.updatedAt} />
-          </p>
-          <p className="text-xs text-gray-400">
-            <a
-              className="commentReply cursor-pointer"
-              onClick={() => {
-                setReplyForm(!replyForm);
-                reportForm && setReportForm(false);
-              }}
-            >
-              Reply
-            </a>
-          </p>
-          <p className="text-xs text-gray-400">
-            <a
-              className="commentReport cursor-pointer"
-              onClick={() => {
-                setReportForm(!reportForm);
-                replyForm && setReplyForm(false);
-              }}
-            >
-              Report
-            </a>
-          </p>
+          </span>
+          <span
+            className="text-xs text-gray-400 commentReply cursor-pointer"
+            onClick={() => {
+              setReplyForm(!replyForm);
+              reportForm && setReportForm(false);
+            }}
+          >
+            Reply
+          </span>
+          <span
+            className="text-xs text-gray-400 commentReport cursor-pointer"
+            onClick={() => {
+              setReportForm(!reportForm);
+              replyForm && setReplyForm(false);
+            }}
+          >
+            Report
+          </span>
         </div>
         {reportForm && <ReportForm postID={postID} commentID={children.id} />}
         {replyForm && (
