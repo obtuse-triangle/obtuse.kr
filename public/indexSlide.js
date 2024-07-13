@@ -82,43 +82,43 @@ function render() {
 }
 
 render();
+selected == 0 &&
+  setTimeout(() => {
+    document.querySelectorAll(".next-slide, .posts-scroll>a").forEach((next) => {
+      next.onclick = (e) => {
+        e.preventDefault();
+        selected = 1;
+        anime({
+          targets: ".posts-scroll",
+          translateX: -1 * 80 + "vw",
+          easing: "easeInOutQuart",
+          duration: 1200,
+        });
 
-setTimeout(() => {
-  document.querySelectorAll(".next-slide, .posts-scroll>a").forEach((next) => {
-    next.onclick = (e) => {
-      e.preventDefault();
-      selected = 1;
-      anime({
-        targets: ".posts-scroll",
-        translateX: -1 * 80 + "vw",
-        easing: "easeInOutQuart",
-        duration: 1200,
-      });
-
-      posts.forEach((post, index) => {
-        if (index == selected) {
-          anime({
-            targets: post,
-            scale: 1,
-            filter: "blur(0px)",
-            easing: "easeInOutQuart",
-            duration: 1200,
-          });
-          post.onclick = null;
-        } else {
-          anime({
-            targets: post,
-            scale: 0.9,
-            filter: "blur(5px)",
-            easing: "easeInOutQuart",
-            duration: 500,
-          });
-        }
-      });
-      setTimeout(() => {
-        render();
-        autoSlideAni = autoSlide();
-      }, 1200);
-    };
-  });
-}, 300);
+        posts.forEach((post, index) => {
+          if (index == selected) {
+            anime({
+              targets: post,
+              scale: 1,
+              filter: "blur(0px)",
+              easing: "easeInOutQuart",
+              duration: 1200,
+            });
+            post.onclick = null;
+          } else {
+            anime({
+              targets: post,
+              scale: 0.9,
+              filter: "blur(5px)",
+              easing: "easeInOutQuart",
+              duration: 500,
+            });
+          }
+        });
+        setTimeout(() => {
+          render();
+          autoSlideAni = autoSlide();
+        }, 1200);
+      };
+    });
+  }, 300);

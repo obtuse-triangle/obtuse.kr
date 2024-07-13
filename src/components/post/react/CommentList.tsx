@@ -42,7 +42,6 @@ const CommentList = ({ id }: Props) => {
         });
       })
       .finally(() => {
-        // toast.dismiss(toastID);
         setLoading(false);
       });
   }, [id]);
@@ -61,7 +60,7 @@ const CommentList = ({ id }: Props) => {
           )}
         </div>
       )}
-      <ToastContainer theme="dark" />
+      <ToastContainer theme="dark" position="bottom-right" />
     </div>
   );
 };
