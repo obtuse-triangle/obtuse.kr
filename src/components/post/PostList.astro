@@ -1,6 +1,7 @@
 ---
 import Post from "./Post.astro";
 import type Article from "@interfaces/article";
+export const prerender = false;
 
 interface Props {
   posts: Article[];
