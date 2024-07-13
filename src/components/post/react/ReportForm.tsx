@@ -28,7 +28,7 @@ export default function ReportForm({ postID, commentID }: Props) {
     )
       .then((res) => {
         if (res.status === 200) {
-          toast.success("신고가 접수되었습니다. 댓글 삭제는 검토 후 이루어집니다.");
+          toast.info("신고가 접수되었습니다. 댓글 삭제는 검토 후 이루어집니다.");
           setReportForm(false);
         }
       })
@@ -64,7 +64,6 @@ export default function ReportForm({ postID, commentID }: Props) {
           <input type="hidden" name="commentID" id="commentID" value={commentID} />
         </form>
       )}
-      <ToastContainer theme="dark" />
     </>
   );
 }

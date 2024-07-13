@@ -107,7 +107,6 @@ const CommentForm = ({ classList, postID, commentID }: Props) => {
       ) : (
         <></>
       )}
-      <ToastContainer theme="dark" />
     </form>
   );
 };
