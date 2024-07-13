@@ -1,0 +1,67 @@
+.animated-text {
+  @apply inline-block;
+  transition: 300ms all;
+  margin-top: 0;
+  /* border-radius: 100%; */
+
+  animation: slide 8s infinite alternate ease-in-out;
+  @apply text-primaryColor;
+  /* @apply text-secondaryColor; */
+  font-size: larger;
+}
+
+@keyframes slide {
+  0% {
+    margin-top: -1rem;
+  }
+  7% {
+    margin-top: -1rem;
+  }
+  14% {
+    margin-top: -6rem;
+  }
+  21% {
+    margin-top: -6rem;
+  }
+  28% {
+    margin-top: -11rem;
+  }
+  35% {
+    margin-top: -11rem;
+  }
+  42% {
+    margin-top: -16rem;
+  }
+  49% {
+    margin-top: -16rem;
+  }
+  56% {
+    margin-top: -21rem;
+  }
+  63% {
+    margin-top: -21rem;
+  }
+  70% {
+    margin-top: -26rem;
+  }
+  77% {
+    margin-top: -26rem;
+  }
+  84% {
+    margin-top: -31rem;
+  }
+  91% {
+    margin-top: -31rem;
+  }
+  96% {
+    margin-top: -36rem;
+  }
+  100% {
+    margin-top: -36rem;
+  }
+}
+.animated-text span {
+  display: block;
+  /* font-size: 20px; */
+  padding: 0.5rem 5px 0;
+}
