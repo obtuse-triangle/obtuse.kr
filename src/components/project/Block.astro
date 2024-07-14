@@ -1,0 +1,32 @@
+---
+import Image from "astro/components/Image.astro";
+type Props = {
+  title: string;
+  status: "서비스중" | "준비중" | "종료됨";
+  url: string;
+  repoURL: string;
+  imageURL: string;
+};
+const { title, status, url, repoURL, imageURL } = Astro.props;
+---
+
+<div class="bg-primaryColor bg-opacity-10 backdrop-blur rounded-2xl p-4 mt-4">
+  <div class="flex justify-between items-center w-full gap-4">
+    <div class="w-full">
+      <div class="flex items-center gap-2 w-full">
+        <a href={url}> <h2 class="text-3xl font-bold text-primaryColor">{title}</h2></a>
+        {status === "서비스중" && <div class="w-2 h-2 p-2 bg-green-400 rounded-full" />}
+        {status === "준비중" && <div class="w-2 h-2 p-2 bg-yellow-400 rounded-full" />}
+        {status === "종료됨" && <div class="w-2 h-2 p-2 bg-red-400 rounded-full" />}
+      </div>
+      <slot />
+      <div class="flex gap-4">
+        <a href={url} class="text-primaryColor">Project link</a>
+        <a href={repoURL} class="text-primaryColor">Github</a>
+      </div>
+    </div>
+    <div>
+      <Image src={imageURL} alt="placeholder" width={128} height={128} class="h-full" />
+    </div>
+  </div>
+</div>

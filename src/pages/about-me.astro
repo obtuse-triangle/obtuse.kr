@@ -3,14 +3,76 @@ import Layout from "@layouts/Layout.astro";
 // import H1 from "@components/layout/H1.astro";
 import Main from "@components/layout/Main.astro";
 import Section1 from "@components/about-me/Section1.astro";
+import Section2 from "@components/about-me/Section2.astro";
+
 import "../styles/about-me.css";
 ---
 
 <Layout title="About me">
   <Main>
-    <div class="pt-10">
+    <section class="pt-10 m-auto h-[100vh] flex justify-center items-center">
       <Section1 />
-    </div>
+    </section>
+    <section class="h-[80vh]">
+      <Section2 />
+    </section>
+    <section class="h-[80vh]">
+      <div>
+        <!-- <div class="w-1/2"> -->
+        <h2 class="text-2xl font-bold my-4">My Skills</h2>
+        <div class="flex gap-4 justify-around">
+          <div class="bg-primaryColor p-4 rounded-lg bg-opacity-10 w-full">
+            <h3 class="text-xl font-bold">Frontend</h3>
+            <ul class="mt-2">
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>JavaScript</li>
+              <li>React</li>
+              <!-- <li>Next.js</li> -->
+              <!-- <li>Vue.js</li> -->
+              <li>Astro</li>
+              <li>PWA</li>
+            </ul>
+          </div>
+          <div class="bg-primaryColor p-4 rounded-lg bg-opacity-10 w-full">
+            <h3 class="text-xl font-bold">Backend</h3>
+            <ul class="mt-2">
+              <li>Express.js</li>
+              <li>Next.js</li>
+              <li>Flask</li>
+              <li>FastApi</li>
+              <li>PHP</li>
+            </ul>
+          </div>
+          <div class="bg-primaryColor p-4 rounded-lg bg-opacity-10 w-full">
+            <h3 class="text-xl font-bold">Database</h3>
+            <ul class="mt-2">
+              <li>Oracle</li>
+              <li>MySQL</li>
+              <!-- <li>MongoDB</li> -->
+              <li>PostgreSQL</li>
+              <li>SQLite</li>
+            </ul>
+          </div>
+          <div class="bg-primaryColor p-4 rounded-lg bg-opacity-10 w-full">
+            <h3 class="text-xl font-bold">Others</h3>
+            <ul class="mt-2">
+              <li>Git</li>
+              <li>GitHub</li>
+              <!-- <li>GitLab</li>
+              <li>Bitbucket</li>
+              <li>CI/CD</li> -->
+              <li>REST API</li>
+              <li>Linux</li>
+              <li>Nginx</li>
+              <li>Figma</li>
+              <!-- <li>GraphQL</li> -->
+            </ul>
+          </div>
+        </div>
+        <!-- </div> -->
+      </div>
+    </section>
   </Main>
 </Layout>
 <script src="/about-me.js" is:inline></script>
