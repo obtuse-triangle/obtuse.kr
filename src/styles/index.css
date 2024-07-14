@@ -1,3 +1,19 @@
-.posts-scroll > div {
+div.main > div.posts-scroll > div {
   margin-left: 10vw;
+}
+div.main {
+  overflow: hidden;
+}
+div.main > div.posts-scroll {
+  padding-top: 2.5rem;
+  display: flex;
+  overflow: visible;
+}
+div.main,
+div.posts-scroll {
+  height: calc(100dvh - 4.25rem);
+}
+.posts-scroll > div {
+  max-height: 100%;
+  margin: auto;
 }
